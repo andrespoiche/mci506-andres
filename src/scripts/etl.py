@@ -1,21 +1,11 @@
-# ETL Script for Data Engineering Project
+def extract_data(source):
+    """
+    Extrae datos desde una fuente.
+    """
+    print(f"Extrayendo datos desde: {source}")
+    return {"status": "success", "rows": 1000}
 
-import pandas as pd
-
-def extract():
-    # Code to extract data from various sources
-    pass
-
-def transform(data):
-    # Code to transform the extracted data
-    pass
-
-def load(data):
-    # Code to load the transformed data into the desired destination
-    pass
-
+# Test
 if __name__ == "__main__":
-    # Main ETL process
-    raw_data = extract()
-    transformed_data = transform(raw_data)
-    load(transformed_data)
+    result = extract_data("database")
+    print(result)
