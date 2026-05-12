@@ -1,18 +1,20 @@
-name: Docker Image CI
+name: ETL Pipeline
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [main]
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
 
 jobs:
-
-  build:
-
+  etl:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file src/Dockerfile --tag my-image-name:$(date +%s)
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build . --file src/Dockerfile -t etl-pipeline
+
+      - name: Run ETL
+        run: docker run etl-pipeline
